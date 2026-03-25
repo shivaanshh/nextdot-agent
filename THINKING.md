@@ -1,5 +1,7 @@
 # THINKING.md — Nextdot AI Agent Assignment
 
+## What it does & User Impact
+This pipeline transforms raw, messy customer communication into actionable business intelligence. By automating classification and extraction, it significantly reduces manual triage time for support teams. For the end user, this translates to faster response times, highly personalized interaction matching their specific sentiment, and a seamless support experience that feels human-centric rather than automated.
 ## Model Choice & Rationale
 I chose **Claude 3.5 Sonnet** as the primary engine for this project due to its industry-leading precision in structured extraction and empathetic tone. **GPT-4o-mini** and **Gemini 2.0 Flash** serve as capable secondary failovers for high-volume scenarios. This multi-model approach ensure zero downtime and consistency. For the **live web dashboard** ([nextdot-agent.vercel.app](https://nextdot-agent.vercel.app/)), I integrated **Puter.js**, enabling a "user-pays" model that removes the need for developer-side API keys in a production environment.
 
@@ -13,8 +15,7 @@ Rather than chaining multiple API calls, I designed a single, highly structured 
 - **The JSON Drift**: Early iterations sometimes included prose inside the JSON block. I fixed this by adding a "must be valid JSON, no prose" constraint in the prompt and implementing a markdown-aware parser in `agent.py`.
 - **Secret Management**: I implemented a strict `.env` pattern for all sensitive keys, ensuring they are excluded from the repository via `.gitignore` while providing a redacted `.env.example` to ensure smooth and secure onboarding for other developers.
 
-## What it does & User Impact
-This pipeline transforms raw, messy customer communication into actionable business intelligence. By automating classification and extraction, it significantly reduces manual triage time for support teams. For the end user, this translates to faster response times, highly personalized interaction matching their specific sentiment, and a seamless support experience that feels human-centric rather than automated.
+
 
 ## Future Improvements
 - **RAG Integration**: Use Vector Search to match current complaints with "similar resolved cases" to provide even more accurate recommended actions.
