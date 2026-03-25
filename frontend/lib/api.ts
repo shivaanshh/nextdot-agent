@@ -101,33 +101,23 @@ export async function processMessage(message: string, model: string = "claude"):
     return processWithPuter(message)
   }
 
-  // Use Puter for Gemini single model
-  if (model === "gemini" && hasPuter) {
-    return processWithPuterGemini(message)
+  // Use Puter for OpenAI single model
+  if (model === "openai" && hasPuter) {
+    return processWithPuterOpenAI(message)
   }
 
-  // If "both", we can combine Puter (Claude/Gemini) + API (OpenAI)
-  if (model === "both") {
-    const fetchFromApi = async (m: string) => {
-      const r = await fetch(`${API_BASE}/process`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message, model: m }),
-      })
-      if (!r.ok) return { error: `Failed to fetch ${m}` } as any
-      return r.json()
-    }
-
-    const [claudeResult, geminiResult, openaiResponse] = await Promise.all([
-      hasPuter ? processWithPuter(message) : fetchFromApi("claude"),
-      hasPuter ? processWithPuterGemini(message) : fetchFromApi("gemini"),
-      fetchFromApi("openai")
+  // If "both", we can combine Puter (Claude/Gemini/OpenAI) 
+  if (model === "both" && hasPuter) {
+    const [claudeResult, geminiResult, openaiResult] = await Promise.all([
+      processWithPuter(message),
+      processWithPuterGemini(message),
+      processWithPuterOpenAI(message)
     ]);
     
     return { 
       claude: claudeResult, 
       gemini: geminiResult,
-      openai: openaiResponse
+      openai: openaiResult
     };
   }
 
@@ -212,7 +202,15 @@ async function processWithPuterGemini(message: string): Promise<PipelineResult> 
   const fullPrompt = `${SYSTEM_PROMPT}\n\n${PIPELINE_PROMPT.replace('{message}', message)}`
   const response = await (window as any).puter.ai.chat(fullPrompt, { model: 'gemini-2.0-flash' })
   const rawText = typeof response === 'string' ? response : (response.message?.content?.[0]?.text || response.message?.content || response.text || "")
-  return parsePuterResponse(rawText, message, "gemini-2.0-flash (Free)")
+  return parsePuterResponse(rawText, message, "gemini-2.0-flash (Free Puter)")
+}
+
+async function processWithPuterOpenAI(message: string): Promise<PipelineResult> {
+  const fullPrompt = `${SYSTEM_PROMPT}\n\n${PIPELINE_PROMPT.replace('{message}', message)}`
+  // Using gpt-5.4-nano for free text generation as per docs
+  const response = await (window as any).puter.ai.chat(fullPrompt, { model: 'gpt-5.4' })
+  const rawText = typeof response === 'string' ? response : (response.message?.content?.[0]?.text || response.message?.content || response.text || "")
+  return parsePuterResponse(rawText, message, "gpt-5.4 (Free Puter)")
 }
 
 export async function getHistory(): Promise<(PipelineResult | ComparisonResult)[]> {

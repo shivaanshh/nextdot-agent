@@ -16,8 +16,9 @@ Render is great for hosting your FastAPI backend.
 3.  **Environment Variables**: Go to the **Environment** tab and add:
     - `ANTHROPIC_API_KEY`: `your_key_here`
     - `GEMINI_API_KEY`: `your_key_here`
-    - `OPENAI_API_KEY`: `your_key_here`
     - `PORT`: `10000` (Render usually sets this automatically, but our code will pick it up).
+    > [!NOTE]
+    > `OPENAI_API_KEY` is no longer required for the backend, as OpenAI processing is now handled by Puter.js on the frontend!
 4.  **Copy the URL**: Once deployed, Render will give you a URL like `https://nextdot-backend.onrender.com`. **Save this.**
 
 ---
