@@ -7,8 +7,11 @@ import streamlit as st
 import json
 import time
 import os
+import sys
 from dotenv import load_dotenv
 
+# Add parent directory to path to allow importing agent.py
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 load_dotenv()
 
 # ─── Page config ─────────────────────────────────────────────────────────────

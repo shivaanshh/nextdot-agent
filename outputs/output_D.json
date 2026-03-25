@@ -1,0 +1,20 @@
+{
+  "label": "Input_D",
+  "model": "claude-sonnet-4-20250514",
+  "input_message": "kal maine aapke tool ka demo dekha, bahut accha laga! kya aap mujhe pricing bata sakte hain?",
+  "classification": {
+    "intent": "query",
+    "sentiment": "positive",
+    "language": "hinglish"
+  },
+  "extracted_fields": {
+    "customer_name": null,
+    "issue_type": "pricing inquiry",
+    "urgency_level": "Low",
+    "recommended_action": "Reply in Hinglish with pricing details or a link to the pricing page, and offer to schedule a personalized demo or call."
+  },
+  "reply": "Shukriya! Bahut khushi hui ki demo aapko pasand aaya. Hmare pricing plans alag-alag business sizes ke liye hain — ek free trial bhi available hai jisse aap pehle tool explore kar sakte hain bina koi commitment ke. Main aapko detailed pricing ka link share kar raha hoon, aur agar aap chahein toh ek short call bhi set up kar sakte hain jisme hum aapke use-case ke hisaab se best option discuss kar sakein!",
+  "reasoning": "Classified as 'query' because the customer is asking a specific informational question about pricing after watching a demo — no complaint, no urgent need. Sentiment is 'positive' because the message expresses genuine enthusiasm ('bahut accha laga') before asking the question. Language is 'hinglish' — a mix of Hindi words written in Roman script, which is extremely common in informal Indian business communication. Urgency is 'Low' because this is an interested prospect in the consideration stage, not someone with an active issue. The reply is written in Hinglish to match the customer's register and make them feel comfortable — responding in formal English to a Hinglish message would feel cold and mismatched.",
+  "latency_seconds": 3.1,
+  "edge_case_flag": null
+}

@@ -1,0 +1,20 @@
+{
+  "label": "Input_F",
+  "model": "claude-sonnet-4-20250514",
+  "input_message": "help",
+  "classification": {
+    "intent": "unclear",
+    "sentiment": "neutral",
+    "language": "english"
+  },
+  "extracted_fields": {
+    "customer_name": null,
+    "issue_type": "unclear",
+    "urgency_level": "Low",
+    "recommended_action": "Reply asking the customer to describe their issue in more detail before routing to any team."
+  },
+  "reply": "Hi there! It looks like your message came through, but we weren't able to catch the details. Could you let us know what you need help with? Even a sentence or two helps us point you in the right direction quickly.",
+  "reasoning": "Classified as 'unclear' because the single word 'help' does not provide enough context to determine a specific intent — it could be a complaint, query, technical issue, or even an accidental send. Sentiment is 'neutral' because there are no emotional cues or context to suggest distress or positivity. Urgency is 'Low' because without knowing what the customer needs, there is no basis to escalate. The reply tone is friendly and inviting rather than clinical — a customer who types only 'help' might be confused or in a hurry, and a warm follow-up question is more likely to get a useful response than a formal ticket prompt.",
+  "latency_seconds": 2.3,
+  "edge_case_flag": "single_word"
+}

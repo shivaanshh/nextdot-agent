@@ -1,9 +1,13 @@
 import os
+import sys
+import json
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional, List
-import json
+
+# Add parent directory to path to allow importing agent.py
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from agent import run_pipeline, get_history, save_to_history, CLAUDE_AVAILABLE, GEMINI_AVAILABLE, OPENAI_AVAILABLE
 
 app = FastAPI(title="Nextdot AI Agent API")

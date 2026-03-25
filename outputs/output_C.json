@@ -1,0 +1,19 @@
+{
+  "label": "Input_C",
+  "model": "claude-sonnet-4-20250514",
+  "input_message": "Just wanted to say the onboarding session last Tuesday was really well done. Priya from your team was super helpful and patient. The tool is working great so far. Looking forward to the advanced features you mentioned. Keep it up!",
+  "classification": {
+    "intent": "feedback",
+    "sentiment": "positive",
+    "language": "english"
+  },
+  "extracted_fields": {
+    "customer_name": null,
+    "issue_type": "appreciation / onboarding experience",
+    "urgency_level": "Low",
+    "recommended_action": "Share this feedback with Priya and her manager as a formal commendation, and follow up with the customer about the advanced features timeline to sustain engagement."
+  },
+  "reply": "Thank you so much — this genuinely made our day! We'll absolutely pass your kind words on to Priya; it'll mean a lot to her and the whole team. We're glad the tool is already delivering value, and we're excited for you to get your hands on the advanced features — they're coming along well. Keep the feedback coming — it helps us build better!",
+  "reasoning": "Classified as 'feedback' because the customer is proactively sharing their experience rather than asking for something or reporting a problem. Sentiment is clearly 'positive' — the message uses warm, enthusiastic language ('really well done', 'super helpful', 'working great') with no negative undertone or hidden complaint. Urgency is 'Low' because nothing requires immediate support action — this is a feel-good message. The reply mirrors the warmth of the original: celebratory and personal rather than corporate, because a customer who took time to write something genuinely nice deserves a response that feels equally human and not like a customer service script.",
+  "latency_seconds": 2.7
+}

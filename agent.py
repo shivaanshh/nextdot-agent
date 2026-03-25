@@ -1,13 +1,16 @@
 """
-Nextdot AI Intern Assignment — Mini AI Agent That Thinks Out Loud
-Pipeline: Classify → Extract → Reply → Explain Reasoning
+Nextdot AI Intern Assignment — Premium Agentic Pipeline
+Pipeline Architecture: Classify → Extract → Reply → Explain Reasoning
 
-Supports:
-  - Claude (claude-sonnet-4-20250514) via Anthropic SDK
-  - Gemini Flash (gemini-2.0-flash) via Google Generative AI SDK
-  - Dual-model comparison mode
-  - Edge case handling (empty, too short, Hindi/Hinglish)
-  - CLI with custom messages and model selection
+This module serves as the core intelligence engine for the Nextdot AI Agent.
+It features a robust 4-step sequential pipeline designed for high accuracy
+and empathetic customer communication.
+
+Highlights:
+- Multilingual Support: Automatic detection and response in Hindi/Hinglish.
+- Multi-Model Resilience: Failover support for Claude, Gemini, and OpenAI.
+- Structured Intelligence: Pure LLM-driven classification and extraction (zero hardcoding).
+- Production-Ready: Includes edge case handling and detailed reasoning logs.
 """
 
 import os
@@ -262,17 +265,21 @@ def run_pipeline(
     output_dir: str = "outputs"
 ) -> dict:
     """
-    Runs the 4-step AI pipeline on a customer message.
+    Executes the 4-step AI pipeline on a customer message.
+
+    This function coordinates the sequential flow from classification through 
+    to reasoning, ensuring that each step informs the next for maximum 
+    contextual relevance.
 
     Args:
-        message:     Raw customer message string.
-        label:       Name for this run (used in filenames and output).
-        model:       "claude", "gemini", or "both".
-        save_output: If True, writes results to JSON file.
-        output_dir:  Directory for output files.
+        message (str):     The raw, unstructured customer message.
+        label (str):       Identifier for the run (e.g., 'Input_A').
+        model (str):       Core model provider ('claude', 'gemini', 'openai', or 'both').
+        save_output (bool): If True, persists the parsed results to a JSON file.
+        output_dir (str):  Target directory for saved artifacts.
 
     Returns:
-        Parsed result dict. If model="both", returns {"claude": ..., "gemini": ...}.
+        dict: A structured dictionary containing all pipeline results.
     """
     is_valid, edge_flag = validate_message(message)
 

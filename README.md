@@ -1,4 +1,6 @@
-# Nextdot AI Agent — Mini Pipeline That Thinks Out Loud
+# Nextdot AI Agent — Premium Agentic Pipeline
+
+**Live Demo**: [https://nextdot-agent.vercel.app/](https://nextdot-agent.vercel.app/)
 
 A 4-step agentic pipeline that takes a raw customer message and produces:
 
@@ -106,30 +108,61 @@ In `--compare` mode, the output wraps both models under `"claude"` and `"gemini"
 
 ---
 
-## Project structure
+## Project Structure
+
+This repository is organized to separate the **Core AI Pipeline** from the **Bonus Interactive Features**:
 
 ```
 nextdot-agent/
-├── agent.py          # Core pipeline (CLI entry point)
-├── app.py            # Streamlit UI
-├── requirements.txt
-├── .env.example      # Template for API keys
-├── .gitignore        # Excludes .env
-├── README.md
-├── THINKING.md
-└── outputs/
-    ├── output_A.json
-    ├── output_B.json
-    └── output_C.json
+├── agent.py            # Core Pipeline (CLI entry point)
+├── THINKING.md         # Design decisions & strategy
+├── README.md           # Setup & instructions
+├── requirements.txt    # Python dependencies
+├── .env.example        # API Key template
+├── outputs/            # Required JSON outputs (A, B, C)
+├── frontend/           # Bonus: Next.js 16 Web Dashboard
+└── dashboard/          # Bonus: Support Services
+    ├── server.py       # FastAPI Backend
+    ├── app.py          # Streamlit UI
+    └── history.json    # Persistent run history
 ```
 
 ---
 
-## Design decisions
+## Run
 
-- **One prompt, four steps**: All four pipeline steps run in a single LLM call per model. This preserves cross-step context (tone in the reply is informed by sentiment from Step 1) and reduces latency and cost.
-- **No hardcoding**: Classification, extraction, reply, and reasoning are entirely model-driven. Zero if/else logic for the actual intelligence.
-- **Graceful degradation**: If only one API key is present, the other model is skipped cleanly with a message rather than crashing.
-- **Language-aware**: The system prompt and extraction explicitly ask for language detection, and the reply prompt instructs the model to respond in the detected language.
+### Option A: Core CLI — Sample inputs (Recommended for Evaluation)
+Runs the 3 required sample inputs and saves results to `outputs/`.
+```bash
+python agent.py --model openai
+```
 
-See [THINKING.md](./THINKING.md) for full reasoning on model choice, prompting strategy, and what I'd improve.
+### Option B: Premium Next.js Dashboard (Bonus)
+A full-stack implementation featuring persistent history and a modern design.
+
+1. **Start Backend**:
+   ```bash
+   python dashboard/server.py
+   ```
+2. **Start Frontend**:
+   ```bash
+   cd frontend
+   npm run dev
+   ```
+3. Open `http://localhost:3000`
+
+### Option C: Streamlit UI (Bonus — Quick View)
+```bash
+streamlit run dashboard/app.py
+```
+
+---
+
+## Design Decisions
+
+- **Structural Organization**: Separated the core logic from the UI/Dashboard components to ensure evaluators can immediately focus on the AI engineering requirements (`agent.py`).
+- **One prompt, four steps**: All four pipeline steps run in a single LLM call. This preserves cross-step context (tone in the reply is informed by sentiment from Step 1) and reduces latency.
+- **Failover-Ready**: The system is designed to gracefully switch between Claude, Gemini, and OpenAI based on available API keys.
+- **Language-Aware**: Detects and responds in Hindi/Hinglish when appropriate, using zero hardcoded rules.
+
+See [THINKING.md](./THINKING.md) for full reasoning.

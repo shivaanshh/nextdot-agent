@@ -1,0 +1,19 @@
+{
+  "label": "Input_A",
+  "model": "claude-sonnet-4-20250514",
+  "input_message": "i ordered the premium plan 3 weeks ago and STILL havent received any confirmation email or access. this is absolutely ridiculous. i paid Rs 4999 and nobody has responded to my 4 emails. if this isnt fixed today im disputing the charge with my bank. my name is Rohan Mehta and my order id is ORD-8821.",
+  "classification": {
+    "intent": "complaint",
+    "sentiment": "urgent",
+    "language": "english"
+  },
+  "extracted_fields": {
+    "customer_name": "Rohan Mehta",
+    "issue_type": "billing / account access",
+    "urgency_level": "Critical",
+    "recommended_action": "Immediately escalate order ORD-8821 to the billing team, verify the Rs 4999 payment, manually trigger account provisioning, and send a personal email to Rohan within 2 hours — before he contacts his bank."
+  },
+  "reply": "Hi Rohan, I sincerely apologize — three weeks without access after paying Rs 4999, and no response to four emails, is completely unacceptable and I understand exactly why you're this frustrated. I've escalated your order ORD-8821 as a critical priority right now and our team will manually activate your account and reach out to you directly within the next 2 hours. Please don't initiate the bank dispute just yet — we will make this right for you today.",
+  "reasoning": "Classified as 'complaint' because Rohan is reporting a specific, unresolved service failure — not asking a question. Sentiment is 'urgent' rather than just 'negative' because he uses all-caps, has already sent four unanswered emails over three weeks, and is explicitly threatening a bank chargeback — this is an imminent financial and reputational risk. Urgency is 'Critical' because an active chargeback threat involving a Rs 4999 payment with zero prior resolution attempts qualifies as the highest escalation tier. The reply tone is immediately apologetic and action-specific — no filler — because a customer at this level of frustration needs to know something concrete is happening right now, not that 'we hear you'.",
+  "latency_seconds": 3.4
+}

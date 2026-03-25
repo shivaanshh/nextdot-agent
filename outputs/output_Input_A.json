@@ -1,0 +1,21 @@
+{
+  "id": "msg_ 1774464723787",
+  "timestamp": "2026-03-25T18:52:03Z",
+  "label": "Input_A",
+  "model": "gpt-4o-mini",
+  "input_message": "i ordered the premium plan 3 weeks ago and STILL havent received any confirmation email or access. this is absolutely ridiculous. i paid Rs 4999 and nobody has responded to my 4 emails. if this isnt fixed today im disputing the charge with my bank. my name is Rohan Mehta and my order id is ORD-8821.",
+  "classification": {
+    "intent": "complaint",
+    "sentiment": "negative",
+    "language": "english"
+  },
+  "extracted_fields": {
+    "customer_name": "Rohan Mehta",
+    "issue_type": "billing",
+    "urgency_level": "Critical",
+    "recommended_action": "Investigate the order status and send a confirmation email immediately."
+  },
+  "reply": "Dear Rohan Mehta, I sincerely apologize for the inconvenience you've experienced regarding your premium plan order. It's unacceptable that you have not received a confirmation email or access, especially after multiple attempts to reach us. I assure you that I will escalate this matter to our team immediately, and we will resolve it today. Thank you for your patience, and I appreciate you bringing this to our attention.",
+  "reasoning": "The customer's message indicates a strong complaint about not receiving a confirmation for a service after payment, expressing frustration. The sentiment is negative due to their dissatisfaction and urgency is critical, as Rohan has threatened to dispute the charge with his bank if the issue is not resolved promptly. The tone is apologetic, acknowledging the customer's frustration and aiming to reassure them that the issue will be addressed.",
+  "latency_seconds": 9.21
+}

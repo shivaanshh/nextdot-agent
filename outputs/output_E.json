@@ -1,0 +1,11 @@
+{
+  "label": "Input_E",
+  "model": "claude-sonnet-4-20250514",
+  "input_message": "",
+  "edge_case": "empty_input",
+  "error": "Message is empty. Please provide a customer message.",
+  "classification": {},
+  "extracted_fields": {},
+  "reply": "",
+  "reasoning": ""
+}
