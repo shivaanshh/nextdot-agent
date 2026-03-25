@@ -26,20 +26,31 @@ While the initial Streamlit app was functional, I decided to upgrade the UI to a
 2. **Persistence**: Added a `history.json` and a session-based sidebar to track past analyses, making the tool feel like a real support workstation rather than a one-off demo.
 3. **Architecture**: Decoupling the LLM logic (FastAPI) from the presentation layer (Next.js) is how modern AI products are actually built at Nextdot.
 
-## Multi-Model Support (Claude, Gemini, OpenAI)
+## Multi-Model Support (Claude, Gemini, OpenAI via Puter.js)
 
-The system now supports three major providers:
-- **Claude (via Puter.js)**: Free high-tier access without API keys.
-- **Gemini (via Google API)**: Fast and efficient processing.
-- **OpenAI (via OpenAI API)**: Industry standard gpt-4o-mini for robust reasoning.
+The system now supports three major AI families, providing a robust comparison tool:
+- **Claude (v3.5 Sonnet)**: Primary for complex reasoning and Hindi.
+- **Gemini (v2.0 Flash)**: Fast, modern reasoning style.
+- **OpenAI (v5.4 / GPT-5.4)**: Integrated via Puter.js for frontend-first processing.
 
-## Free Claude via Puter.js
+### Why Puter.js for All Models?
 
-To make the tool even more accessible (no API key required for Claude), I integrated **Puter.js** into the frontend. When you select 'Claude' or 'Both', the dashboard now automatically routes Claude requests through the Puter cloud bridge. This allows for free, high-tier Claude (Sonnet 4.6) access directly in the browser, while Gemini and OpenAI still run through the secure FastAPI backend.
+A major pivot during development was moving **all model processing to the frontend** using **Puter.js**. 
+
+1. **User-Pays Model**: This allows the application to scale without the developer needing to maintain expensive backend API keys. Each user interacts with the models via their own browser session.
+2. **Simplified Deployment**: By moving AI calls to the frontend, we avoid complex secrets management in the backend (no more `OPENAI_API_KEY` errors on Render). 
+3. **Frontend Resilience**: This architecture makes the dashboard a true "Static Web App" that can be hosted on a CDN (Vercel) while still performing heavy-duty AI tasks.
+
+## Security & Deployment Architecture
+
+1. **Secret Scanning**: Implemented strict `.gitignore` rules for `.env` and `outputs/`. When an accidental key leak was detected by GitHub's Push Protection, I used `git commit --amend` and a full repository re-initialization to **purge the secrets from the history** before successfully pushing.
+2. **Dual-Platform Ready**: 
+   - **Frontend (Next.js)**: Deployed to **Vercel** with a custom `Root Directory` set to `frontend`.
+   - **Backend (FastAPI)**: Deployed to **Render** to handle history persistence and CORS headers, using dynamic `PORT` allocation.
 
 ## What I'd improve with more time
 
 - **Authentication**: Add a login layer for support leads vs. junior agents.
-- **Vector Search**: Use a vector DB (like ChromaDB) to find "similar past cases" and suggest how other agents resolved them.
-- **Streaming**: Implement Server-Sent Events (SSE) or WebSockets to stream the reasoning process live from the LLM to the dashboard.
-- **Unit Tests**: Add comprehensive tests for the parsing logic using `pytest`.
+- **Vector Search (RAG)**: Use a vector DB (like ChromaDB) to find "similar past cases" and suggest how other agents resolved them.
+- **Streaming UI**: Implement a more dynamic "typing" effect for the reasoning results as they come in from Puter.js.
+- **Unit Tests**: Add comprehensive tests for the parsing logic using `pytest` for the backend and `Vitest` for the frontend.
