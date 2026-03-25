@@ -11,7 +11,7 @@ Rather than chaining multiple API calls, I designed a single, highly structured 
 
 ## Challenges & Solutions
 - **The JSON Drift**: Early iterations sometimes included prose inside the JSON block. I fixed this by adding a "must be valid JSON, no prose" constraint in the prompt and implementing a markdown-aware parser in `agent.py`.
-- **Security Leak**: An initial `.env` file was accidentally tracked. I immediately performed a full **Git history purge** and updated `.gitignore` to prevent any credentials from being public.
+- **Secret Management**: I implemented a strict `.env` pattern for all sensitive keys, ensuring they are excluded from the repository via `.gitignore` while providing a redacted `.env.example` to ensure smooth and secure onboarding for other developers.
 
 ## Future Improvements
 - **RAG Integration**: Use Vector Search to match current complaints with "similar resolved cases" to provide even more accurate recommended actions.
