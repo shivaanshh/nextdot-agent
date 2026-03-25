@@ -13,6 +13,9 @@ Rather than chaining multiple API calls, I designed a single, highly structured 
 - **The JSON Drift**: Early iterations sometimes included prose inside the JSON block. I fixed this by adding a "must be valid JSON, no prose" constraint in the prompt and implementing a markdown-aware parser in `agent.py`.
 - **Secret Management**: I implemented a strict `.env` pattern for all sensitive keys, ensuring they are excluded from the repository via `.gitignore` while providing a redacted `.env.example` to ensure smooth and secure onboarding for other developers.
 
+## What it does & User Impact
+This pipeline transforms raw, messy customer communication into actionable business intelligence. By automating classification and extraction, it significantly reduces manual triage time for support teams. For the end user, this translates to faster response times, highly personalized interaction matching their specific sentiment, and a seamless support experience that feels human-centric rather than automated.
+
 ## Future Improvements
 - **RAG Integration**: Use Vector Search to match current complaints with "similar resolved cases" to provide even more accurate recommended actions.
 - **Streaming Logic**: Implement real-time token streaming in the dashboard to make the "thinking" process visible to the user.
