@@ -1,7 +1,7 @@
 # THINKING.md — Nextdot AI Agent Assignment
 
 ## Model Choice & Rationale
-I chose **Gemini 2.0 Flash** as the primary engine for this pipeline, with **Claude 3.5 Sonnet** and **GPT-4o-mini** as secondary failovers. Flash was selected due to its exceptional speed (latency under 3s) and generous free-tier rate limits, making it ideal for high-throughput customer support scenarios. For the **live web dashboard** ([nextdot-agent.vercel.app](https://nextdot-agent.vercel.app/)), I integrated **Puter.js**, enabling a "user-pays" model that removes the need for developer-side API keys in a production environment.
+I chose **Claude 3.5 Sonnet** as the primary engine for this project due to its industry-leading precision in structured extraction and empathetic tone. **GPT-4o-mini** and **Gemini 2.0 Flash** serve as capable secondary failovers for high-volume scenarios. This multi-model approach ensure zero downtime and consistency. For the **live web dashboard** ([nextdot-agent.vercel.app](https://nextdot-agent.vercel.app/)), I integrated **Puter.js**, enabling a "user-pays" model that removes the need for developer-side API keys in a production environment.
 
 ## Prompting Strategy: "One Prompt, Four Steps"
 Rather than chaining multiple API calls, I designed a single, highly structured system prompt. This strategy:
